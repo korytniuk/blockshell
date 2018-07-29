@@ -24,7 +24,7 @@ from blockchain.chain import Block, Blockchain
 # ==================================================
 SUPPORTED_COMMANDS = [
     'dotx',
-    'mineblocks',
+    'mineblock',
     'allblocks',
     'mempool',
     'getblock',
@@ -59,7 +59,7 @@ def init(difficulty):
 
  > A command line utility for learning Blockchain concepts.
  > Type 'help' to see supported commands.
- > Project by Daxeel Soni and Rustie Lin
+ > Project by Daxeel Soni, edits and additional features by Rustie Lin
 
     """)
 
@@ -100,10 +100,10 @@ def dotx(cmd):
     txData = cmd.split("dotx ")[-1]
     if "{" in txData:
         txData = json.loads(txData)
-    print("Doing transaction...")
+    print("Sending transaction...")
     coin.addTx(txData)
 
-def mineblocks(cmd):
+def mineblock(cmd):
     """
         Mine a block - Method to mine using PoW and add a block to the blockchain.
     """
@@ -114,15 +114,15 @@ def mineblocks(cmd):
         indices.sort()
 
         if len(indices) > 0:
-            while len(indices) > 0:
+            while indices:
                 data.append(coin.mempool.pop(indices.pop()))
         else:
-            for i in range(0, len(coin.mempool)):
+            while coin.mempool:
                 data.append(coin.mempool.pop())
-    
+
         coin.addBlock(Block(data))
     except:
-        print("Invalid block indices")
+        throwError("Invalid block indices")
 
 
 def allblocks(cmd):
