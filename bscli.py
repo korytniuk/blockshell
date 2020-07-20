@@ -160,7 +160,7 @@ def help(cmd):
     """
     print("Commands:")
     print("   sendtx <transaction data>          Send new transaction")
-    print("   mineblocks [transaction indices]   Adds transactions to a block and mines")
+    print("   mineblock [transaction indices]   Adds transactions to a block and mines")
     print("   allblocks                          Fetch all mined blocks in blockchain")
     print("   mempool                            Fetch all pending transactions in the mempool")
     print("   getblock <block hash>              Fetch information about particular block")
